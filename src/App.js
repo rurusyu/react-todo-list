@@ -16,6 +16,16 @@ class App extends Component {
     ]
   };
 
+
+  handleRemove =(id) => {
+    // console.log(id); //여기서 id다 기억함.
+    const {todos} = this.state;
+   
+    this.setState({
+      todos : todos.filter(todo => todo.id !== id)  //파라미터로 받아온 id를 갖고 있지 않은 배열 생성.
+    });
+  }
+
   handleToggle =( id ) =>{
     const {todos} = this.state;  
     const index = todos.findIndex(todo => todo.id === id); //기존배열의 인덱스가 몇번인지 고른후
@@ -59,7 +69,7 @@ class App extends Component {
 
   render() {
     const { input , todos} = this.state;  //todos 정보를 TodoItemList에 전달.
-    const { handleChange, handleCreate, handleKeyPress,handleToggle } = this;
+    const { handleChange, handleCreate, handleKeyPress,handleToggle,handleRemove } = this;
     return (
       <>
         <TodoListTemplate
@@ -72,7 +82,7 @@ class App extends Component {
             />
           }
         >
-          <TodoItemList todos={todos} onToggle={handleToggle}/>
+          <TodoItemList todos={todos} onToggle={handleToggle} onRemove={handleRemove}/>
         </TodoListTemplate>
       </>
     );
