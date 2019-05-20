@@ -1,9 +1,16 @@
 import React, { Component } from "react";
 import "./TodoItem.css";
 class TodoItem extends Component {
-  render() {
-    const { text, checked, id, onToggle, onRemove } = this.props;
 
+  //최적화.shouldComponentUpdate가 리랜더링 할지말지 정함.
+  shouldComponentUpdate(nextProps, nextState){
+    return this.props.checked !== nextProps.checked;
+  }
+
+
+  render() {
+    const { text, checked, id, onToggle, onRemove } = this.props;   
+    console.log(id);
     this.onClickToggle = () => {
       onToggle(id);
     };

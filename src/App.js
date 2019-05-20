@@ -26,17 +26,17 @@ class App extends Component {
     });
   }
 
-  handleToggle =( id ) =>{
+  handleToggle =( id ) =>{   
     const {todos} = this.state;  
     const index = todos.findIndex(todo => todo.id === id); //기존배열의 인덱스가 몇번인지 고른후
     const selected = todos[index]; //그 인덱스를 선택
     const nextTodos = [...todos]; // 직접수정하면 안되니, 배열하나만들어서 복사 후
    
     nextTodos[index] = { // 그값을 덮어씌워버림
-      ...selected,
+      ...selected,      
       checked : !selected.checked
     };
-
+   
     this.setState({
       todos : nextTodos  // 덮어씌운값으로 업데이트.
     });
